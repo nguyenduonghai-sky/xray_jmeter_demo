@@ -14,8 +14,8 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
-           bat"""chmod a+x cleanup.sh"""
-           bat"""cleanup.sh"""
+           sh"""chmod a+x cleanup.sh"""
+           sh"""cleanup.sh"""
         }
     stage('JMeter Tests') {
 //         withMaven(maven: 'maven_3_6_3') {
