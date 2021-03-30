@@ -25,7 +25,6 @@ node() {
 // 		"""
 //         }
         echo "Jump to phase Jmeter Tests"
-        bat"""jmeter -H 10.225.3.1 -P 3128 -n -t  jpetstore_configurable_host.jmx -l results.jtl -e -o dashboard;"""
         bat"""perf_script.sh"""
     }
     stage('Expose report') {
