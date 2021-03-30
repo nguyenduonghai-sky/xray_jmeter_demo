@@ -1,7 +1,7 @@
 #!/bin/bash
  
 JMETERPLUGINSCMD=JMeterPluginsCMD.bat;
-#./cleanup.sh
+#./cleanup.bat
  
 # run jmeter and produce a JTL csv report
 echo "run jmeter and produce a JTL csv report";
