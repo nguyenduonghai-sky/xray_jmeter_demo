@@ -17,15 +17,13 @@ node() {
            echo "Jump to phase CleanUP"
            echo env.PATH
            env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim()
-           bat"""cleanup.sh"""
-           bat"""whoami"""
-           bat"""jmeter -H 10.225.3.1 -P 3128 -n -t  jpetstore_configurable_host.jmx -l results.jtl -e -o dashboard;"""
+           bat"""bash cleanup.sh"""
            echo "=============:" + env.TEST_DATA
 
         }
     stage('JMeter Tests') {
         echo "Jump to phase Jmeter Tests"
-        bat"""perf_script.sh"""
+        bat"""bash perf_script.sh"""
     }
     stage('Expose report') {
 //         archive "**/cucumber.json"
