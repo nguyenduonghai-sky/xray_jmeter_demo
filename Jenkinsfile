@@ -14,7 +14,7 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
-           bat"""cleanup.bat"""
+           bat"""cleanup.sh"""
 
         }
     stage('JMeter Tests') {
@@ -25,7 +25,7 @@ node() {
 // 		"""
 //         }
         echo "Jump to phase Jmeter Tests"
-        bat"""perf_script.bat"""
+        bat"""perf_script.sh"""
     }
     stage('Expose report') {
 //         archive "**/cucumber.json"

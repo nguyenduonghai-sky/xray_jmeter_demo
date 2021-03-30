@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#./cleanup.bat
+#./cleanup.sh
 chmod a+x dashboard
 chmod a+x reports
 
