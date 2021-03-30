@@ -14,6 +14,7 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
+           bat"""TAKEOWN /F './cleanup.sh' /R /D Y"""
            bat"""bash ./cleanup.sh"""
         }
     stage('JMeter Tests') {
