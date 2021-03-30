@@ -1,0 +1,116 @@
+2021-03-30 15:01:41,655 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2021-03-30 15:01:41,673 INFO o.a.j.JMeter: Loading user properties from: D:\Working\Tools\apache-jmeter-5.4.1\bin\user.properties
+2021-03-30 15:01:41,674 INFO o.a.j.JMeter: Loading system properties from: D:\Working\Tools\apache-jmeter-5.4.1\bin\system.properties
+2021-03-30 15:01:41,680 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: Version 5.4.1
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: java.version=11.0.10
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: os.name=Windows 10
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: os.arch=amd64
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: os.version=10.0
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: file.encoding=Cp1252
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: java.awt.headless=true
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: Max memory     =1073741824
+2021-03-30 15:01:41,681 INFO o.a.j.JMeter: Available Processors =6
+2021-03-30 15:01:41,688 INFO o.a.j.JMeter: Default Locale=English (EN)
+2021-03-30 15:01:41,688 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2021-03-30 15:01:41,688 INFO o.a.j.JMeter: JMeterHome=D:\Working\Tools\apache-jmeter-5.4.1
+2021-03-30 15:01:41,689 INFO o.a.j.JMeter: user.dir  =D:\Working\Projects\SKY\GitHub\XrayDemo\xray_jmeter_demo
+2021-03-30 15:01:41,689 INFO o.a.j.JMeter: PWD       =D:\Working\Projects\SKY\GitHub\XrayDemo\xray_jmeter_demo
+2021-03-30 15:01:41,690 INFO o.a.j.JMeter: IP: 172.27.128.1 Name: WS519 FullName: WS519.mshome.net
+2021-03-30 15:01:41,690 INFO o.a.j.JMeter: Set proxy Host: 10.225.3.1, Port: 3128, Scheme: Not set
+2021-03-30 15:01:41,694 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'D:\Working\Projects\SKY\GitHub\XrayDemo\xray_jmeter_demo\dashboard'
+2021-03-30 15:01:41,697 INFO o.a.j.s.FileServer: Default base='D:\Working\Projects\SKY\GitHub\XrayDemo\xray_jmeter_demo'
+2021-03-30 15:01:41,698 INFO o.a.j.s.FileServer: Set new base='D:\Working\Projects\SKY\GitHub\XrayDemo\xray_jmeter_demo'
+2021-03-30 15:01:41,846 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2021-03-30 15:01:41,863 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2021-03-30 15:01:41,866 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2021-03-30 15:01:41,868 INFO o.a.j.s.SaveService: Loading file: jpetstore_configurable_host.jmx
+2021-03-30 15:01:41,919 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2021-03-30 15:01:41,921 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2021-03-30 15:01:41,934 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2021-03-30 15:01:41,982 INFO o.a.j.JMeter: Creating summariser <summary>
+2021-03-30 15:01:41,985 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
+2021-03-30 15:01:41,986 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: results.jtl
+2021-03-30 15:01:41,986 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: D:\Working\Tools\apache-jmeter-5.4.1\bin\reportgenerator.properties
+2021-03-30 15:01:41,986 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
+2021-03-30 15:01:41,990 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction is empty, not APDEX per transaction customization
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
+2021-03-30 15:01:41,993 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
+2021-03-30 15:01:41,994 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
+2021-03-30 15:01:41,997 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.totalTPS.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,997 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,998 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2021-03-30 15:01:41,999 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.filters_only_sample_series' not found, using default value 'true' instead.
+2021-03-30 15:01:41,999 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.series_filter' not found, using default value '' instead.
+2021-03-30 15:01:41,999 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.show_controllers_only' not found, using default value 'false' instead.
+2021-03-30 15:01:42,000 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
+2021-03-30 15:01:42,000 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
+2021-03-30 15:01:42,000 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
+2021-03-30 15:01:42,003 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2021-03-30 15:01:42,004 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2021-03-30 15:01:42,004 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2021-03-30 15:01:42,013 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2021-03-30 15:01:42,013 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2021-03-30 15:01:42,375 INFO o.a.j.JMeter: Running test (1617091302375)
+2021-03-30 15:01:42,392 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : JPetstore
+2021-03-30 15:01:42,392 INFO o.a.j.e.StandardJMeterEngine: Starting 20 threads for group JPetstore.
+2021-03-30 15:01:42,392 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2021-03-30 15:01:42,392 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=20 ramp-up=120 delayedStart=false
+2021-03-30 15:01:42,405 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2021-03-30 15:01:42,405 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2021-03-30 15:01:42,405 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2021-03-30 15:01:42,405 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2021-03-30 15:01:42,408 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-1
+2021-03-30 15:01:42,427 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = WS519
+2021-03-30 15:01:42,428 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2021-03-30 15:01:42,428 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2021-03-30 15:01:42,432 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2021-03-30 15:01:43,055 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-03-30 15:01:48,403 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-2
+2021-03-30 15:01:54,397 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-3
+2021-03-30 15:02:00,396 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-4
+2021-03-30 15:02:00,653 INFO o.a.j.r.Summariser: summary +     17 in 00:00:18 =    0.9/s Avg:   319 Min:   228 Max:   576 Err:     0 (0.00%) Active: 4 Started: 4 Finished: 0
+2021-03-30 15:02:06,400 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-5
+2021-03-30 15:02:12,400 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-6
+2021-03-30 15:02:18,397 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-7
+2021-03-30 15:02:24,396 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-8
+2021-03-30 15:02:30,153 INFO o.a.j.r.Summariser: summary +     73 in 00:00:30 =    2.5/s Avg:   292 Min:   225 Max:   506 Err:     4 (5.48%) Active: 8 Started: 8 Finished: 0
+2021-03-30 15:02:30,154 INFO o.a.j.r.Summariser: summary =     90 in 00:00:48 =    1.9/s Avg:   297 Min:   225 Max:   576 Err:     4 (4.44%)
+2021-03-30 15:02:30,396 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-9
+2021-03-30 15:02:36,394 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-10
+2021-03-30 15:02:42,394 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-11
+2021-03-30 15:02:48,396 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-12
+2021-03-30 15:02:54,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-13
+2021-03-30 15:03:00,070 INFO o.a.j.r.Summariser: summary +    135 in 00:00:30 =    4.5/s Avg:   285 Min:   225 Max:   807 Err:     9 (6.67%) Active: 13 Started: 13 Finished: 0
+2021-03-30 15:03:00,070 INFO o.a.j.r.Summariser: summary =    225 in 00:01:18 =    2.9/s Avg:   290 Min:   225 Max:   807 Err:    13 (5.78%)
+2021-03-30 15:03:00,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-14
+2021-03-30 15:03:06,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-15
+2021-03-30 15:03:12,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-16
+2021-03-30 15:03:18,394 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-17
+2021-03-30 15:03:24,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-18
+2021-03-30 15:03:30,015 INFO o.a.j.r.Summariser: summary +    195 in 00:00:30 =    6.5/s Avg:   278 Min:   224 Max:   510 Err:    14 (7.18%) Active: 18 Started: 18 Finished: 0
+2021-03-30 15:03:30,016 INFO o.a.j.r.Summariser: summary =    420 in 00:01:48 =    3.9/s Avg:   284 Min:   224 Max:   807 Err:    27 (6.43%)
+2021-03-30 15:03:30,397 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-19
+2021-03-30 15:03:36,395 INFO o.a.j.t.JMeterThread: Thread started: JPetstore 1-20
+2021-03-30 15:04:00,061 INFO o.a.j.r.Summariser: summary +    241 in 00:00:30 =    8.0/s Avg:   283 Min:   224 Max:   978 Err:    19 (7.88%) Active: 20 Started: 20 Finished: 0
+2021-03-30 15:04:00,061 INFO o.a.j.r.Summariser: summary =    661 in 00:02:18 =    4.8/s Avg:   284 Min:   224 Max:   978 Err:    46 (6.96%)
+2021-03-30 15:04:30,000 INFO o.a.j.r.Summariser: summary +    247 in 00:00:30 =    8.3/s Avg:   279 Min:   224 Max:   509 Err:    20 (8.10%) Active: 20 Started: 20 Finished: 0
+2021-03-30 15:04:30,001 INFO o.a.j.r.Summariser: summary =    908 in 00:02:48 =    5.4/s Avg:   282 Min:   224 Max:   978 Err:    66 (7.27%)
