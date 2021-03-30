@@ -14,7 +14,7 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
-           echo %PATH%
+           echo "%PATH%"
            env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim()
            bat"""cleanup.sh"""
            bat"""whoami"""
