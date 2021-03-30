@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #./cleanup.sh
+echo "yeah! inside "
 chmod a+x dashboard
 chmod a+x reports
 
