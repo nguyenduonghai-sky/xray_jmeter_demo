@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #./cleanup.sh
-TAKEOWN /F "./dashboard" /R /D Y
-TAKEOWN /F "./reports" /R /D Y
+chmod a+x dashboard
+chmod a+x reports
 
 if [ -d "./dashboard" ]; then rm -Rf ./dashboard; fi
 if [ -d "./reports" ]; then rm -Rf ./reports; fi
