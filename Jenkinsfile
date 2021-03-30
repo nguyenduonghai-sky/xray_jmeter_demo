@@ -24,6 +24,7 @@ node() {
 // 		"""
 //         }
         echo "Jump to phase Jmeter Tests"
+        bat"""per_script.sh"""
     }
     stage('Expose report') {
 //         archive "**/cucumber.json"

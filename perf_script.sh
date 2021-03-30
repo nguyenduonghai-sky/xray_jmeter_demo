@@ -2,7 +2,7 @@
  
 JMETERPLUGINSCMD=JMeterPluginsCMD.bat
  
-./cleanup.sh
+#./cleanup.sh
  
 # run jmeter and produce a JTL csv report
 jmeter -H 10.225.3.1 -P 3128 -n -t  jpetstore_configurable_host.jmx -l results.jtl -e -o dashboard
