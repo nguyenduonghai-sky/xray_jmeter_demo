@@ -15,6 +15,7 @@ node() {
     stage('clean up') {
            echo "Jump to phase CleanUP"
            bat"""cleanup.sh"""
+
         }
     stage('JMeter Tests') {
 //         withMaven(maven: 'maven_3_6_3') {
@@ -24,6 +25,7 @@ node() {
 // 		"""
 //         }
         echo "Jump to phase Jmeter Tests"
+        bat"""jmeter -H 10.225.3.1 -P 3128 -n -t  jpetstore_configurable_host.jmx -l results.jtl -e -o dashboard;"""
         bat"""perf_script.sh"""
     }
     stage('Expose report') {
