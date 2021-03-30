@@ -14,14 +14,15 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
-           env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim().readLines().drop(1).join(" ")
-//            bat"""cleanup.sh"""
+           env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim()
+           bat"""cleanup.sh"""
+           bat"""jmeter -H 10.225.3.1 -P 3128 -n -t  jpetstore_configurable_host.jmx -l results.jtl -e -o dashboard;"""
            echo "=============:" + env.TEST_DATA
 
         }
     stage('JMeter Tests') {
         echo "Jump to phase Jmeter Tests"
-//         bat"""perf_script.sh"""
+        bat"""perf_script.sh"""
     }
     stage('Expose report') {
 //         archive "**/cucumber.json"
