@@ -14,18 +14,14 @@ node() {
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
-           bat"""./cleanup.sh"""
+           env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim().readLines().drop(1).join(" ")
+//            bat"""cleanup.sh"""
+           echo "=============:" + env.TEST_DATA
 
         }
     stage('JMeter Tests') {
-//         withMaven(maven: 'maven_3_6_3') {
-//             bat """
-// 			cd %env.WORKSPACE_LOCAL%
-// 			mvn clean test
-// 		"""
-//         }
         echo "Jump to phase Jmeter Tests"
-        bat"""./perf_script.sh"""
+//         bat"""perf_script.sh"""
     }
     stage('Expose report') {
 //         archive "**/cucumber.json"
