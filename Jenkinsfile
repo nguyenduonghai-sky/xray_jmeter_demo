@@ -8,7 +8,7 @@ node() {
         env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
         echo "Workspace set to:"  + env.WORKSPACE_LOCAL
         echo "Build time:"  + env.BUILD_TIME
-        env.PATH = "D:/Working/Tools/apache-jmeter-5.4.1/bin:${env.PATH}"
+        env.PATH = "D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
     }
     stage('Checkout Self') {
         git branch: 'main', credentialsId: '', url: repoURL
