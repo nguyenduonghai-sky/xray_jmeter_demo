@@ -27,10 +27,18 @@ node() {
     }
     stage('Expose report') {
         echo "Jump to phase Expose report"
-        archive "result.jtl"
-        archive "reports"
-        archive "dashboard"
-        archive "synthesis_results.csv"
+        steps {
+            dir('reports') {
+                archiveArtifacts artifacts: '**'
+            }
+        }
+        steps {
+            dir('dashboards') {
+                archiveArtifacts artifacts: '**'
+            }
+        }
+        archiveArtifacts artifacts: "synthesis_results.csv", followSymlinks: false
+        archiveArtifacts artifacts: "results.jtl", followSymlinks: false
 //         cucumber '**/cucumber.json'
 
     }
@@ -46,7 +54,7 @@ node() {
         echo response.successful.toString()
         echo response.data.toString()
         def jiraKey = response.data["key"].toString()
-        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: '/reports/TransactionsPerSecond.png', site: 'local_jira'
+        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
         echo "=========Attachment: " + attachment.data.toString()
 		}
 
