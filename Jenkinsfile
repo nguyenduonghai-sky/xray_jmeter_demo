@@ -27,10 +27,10 @@ node() {
     }
     stage('Expose report') {
         echo "Jump to phase Expose report"
-        archive "*/result.jtl"
-        archive "*/reports"
-        archive "*/dashboard"
-        archive "*/synthesis_results.csv"
+        archive "result.jtl"
+        archive "reports"
+        archive "dashboard"
+        archive "synthesis_results.csv"
 //         cucumber '**/cucumber.json'
 
     }
@@ -41,35 +41,13 @@ node() {
                                          description: 'New JIRA Created from Jenkins.',
                                          issuetype: [id: '10002']]]
 
-              response = jiraNewIssue issue: testIssue, site: 'local_jira'
+        response = jiraNewIssue issue: testIssue, site: 'local_jira'
 
-              echo response.successful.toString()
-              echo response.data.toString()
-//         def attachment = jiraUploadAttachment idOrKey: 'TEST-1', file: ''/reports/TransactionsPerSecond.png'
-//             echo attachment.data.toString()
-
-// 		def description = "[BUILD_URL|${env.BUILD_URL}]"
-// 		def labels = '["regression","automated_regression"]'
-// 		def environment = "DEV"
-// 		def testExecutionFieldId = 10008
-// 		def projectKey = "XRAY"
-// 		def xrayConnectorId = 'CLOUD-e48ff983-d452-4a78-99bb-1f5d68a19c69'
-// 		def info = '''{
-// 				"fields": {
-// 					"project": {
-// 					"key": "''' + projectKey + '''"
-// 				},
-// 				"labels":''' + labels + ''',
-// 				"description":"''' + description + '''",
-// 				"summary": "Automated Regression Execution @ ''' + env.BUILD_TIME + ' ' + environment + ''' " ,
-// 				"issuetype": {
-// 				"id": "''' + testExecutionFieldId + '''"
-// 				}
-// 				}
-// 				}'''
-//
-// 			echo info
-//             step([$class: 'XrayImportBuilder', endpointName: '/cucumber/multipart', importFilePath: 'target/cucumber.json', importInParallel: 'false', importInfo: info, inputInfoSwitcher: 'fileContent', serverInstance: xrayConnectorId])
+        echo response.successful.toString()
+        echo response.data.toString()
+        def jiraKey = response.data["key"].toString()
+        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: '/reports/TransactionsPerSecond.png'
+        echo attachment.data.toString()
 		}
 
 }
