@@ -39,20 +39,20 @@ node() {
 //         cucumber '**/cucumber.json'
 
     }
-	stage('Create Issue to JIRA') {
-        echo "Create Issue to JIRA"
-        def testIssue = [fields: [ project: [key: 'XRAY'],
-                                         summary: 'New JIRA Created from Jenkins.',
-                                         description: 'New JIRA Created from Jenkins.',
-                                         issuetype: [id: '10002']]]
-
-        response = jiraNewIssue issue: testIssue, site: 'local_jira'
-
-        echo response.successful.toString()
-        echo response.data.toString()
-        def jiraKey = response.data["key"].toString()
-        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
-        echo "=========Attachment: " + attachment.data.toString()
-		}
+// 	stage('Create Issue to JIRA') {
+//         echo "Create Issue to JIRA"
+//         def testIssue = [fields: [ project: [key: 'XRAY'],
+//                                          summary: 'New JIRA Created from Jenkins.',
+//                                          description: 'New JIRA Created from Jenkins.',
+//                                          issuetype: [id: '10002']]]
+//
+//         response = jiraNewIssue issue: testIssue, site: 'local_jira'
+//
+//         echo response.successful.toString()
+//         echo response.data.toString()
+//         def jiraKey = response.data["key"].toString()
+//         def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
+//         echo "=========Attachment: " + attachment.data.toString()
+// 		}
 
 }
