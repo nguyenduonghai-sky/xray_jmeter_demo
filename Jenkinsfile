@@ -37,16 +37,7 @@ node() {
     }
 	stage('Create Issue to JIRA') {
         echo "Create Issue to JIRA"
-        def testIssue = [fields: [ project: [key: 'XRAY'],
-                                         summary: 'New JIRA Created from Jenkins.',
-                                         description: 'New JIRA Created from Jenkins.',
-                                         issuetype: [id: '10500']]]
 
-              response = jiraNewIssue issue: testIssue, site: 'JIRA T'
-
-              echo response.successful.toString()
-              echo response.data.toString()
-            }
 // 		def description = "[BUILD_URL|${env.BUILD_URL}]"
 // 		def labels = '["regression","automated_regression"]'
 // 		def environment = "DEV"
