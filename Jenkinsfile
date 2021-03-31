@@ -30,7 +30,7 @@ node() {
         dir('reports') {
             archiveArtifacts artifacts: '**'
         }
-        dir('dashboards') {
+        dir('dashboard') {
             archiveArtifacts artifacts: '**'
         }
 
