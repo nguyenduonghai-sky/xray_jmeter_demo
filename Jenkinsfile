@@ -27,16 +27,13 @@ node() {
     }
     stage('Expose report') {
         echo "Jump to phase Expose report"
-        steps {
-            dir('reports') {
-                archiveArtifacts artifacts: '**'
-            }
+        dir('reports') {
+            archiveArtifacts artifacts: '**'
         }
-        steps {
-            dir('dashboards') {
-                archiveArtifacts artifacts: '**'
-            }
+        dir('dashboards') {
+            archiveArtifacts artifacts: '**'
         }
+
         archiveArtifacts artifacts: "synthesis_results.csv", followSymlinks: false
         archiveArtifacts artifacts: "results.jtl", followSymlinks: false
 //         cucumber '**/cucumber.json'
