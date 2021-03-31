@@ -39,7 +39,7 @@ node() {
         def testIssue = [fields: [ project: [key: 'XRAY'],
                                          summary: 'New JIRA Created from Jenkins.',
                                          description: 'New JIRA Created from Jenkins.',
-                                         issuetype: [id: '10008']]]
+                                         issuetype: [id: '10002']]]
 
               response = jiraNewIssue issue: testIssue, site: 'local_jira'
 
