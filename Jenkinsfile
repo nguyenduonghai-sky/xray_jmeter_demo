@@ -1,7 +1,7 @@
 node() {
 
-    def repoURL = ${env.repoURL}
-    echo "check thu xem:" + ${repoURL}
+    def repoURL = env.repoURL
+    echo "check thu xem:" + repoURL
 
     stage("Prepare Workspace") {
         cleanWs()
