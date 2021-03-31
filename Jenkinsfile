@@ -41,7 +41,7 @@ node() {
                                          description: 'New JIRA Created from Jenkins.',
                                          issuetype: [id: '10008']]]
 
-              response = jiraNewIssue issue: testIssue, site: 'JIRA T'
+              response = jiraNewIssue issue: testIssue, site: 'local_jira'
 
               echo response.successful.toString()
               echo response.data.toString()
