@@ -1,6 +1,7 @@
 node() {
 
-    def repoURL = 'https://github.com/nguyenduonghai-sky/xray_jmeter_demo.git'
+    def repoURL = ${env.repoURL}
+    echo "check thu xem:" + ${repoURL}
 
     stage("Prepare Workspace") {
         cleanWs()
@@ -37,6 +38,9 @@ node() {
         archiveArtifacts artifacts: "synthesis_results.csv", followSymlinks: false
         archiveArtifacts artifacts: "results.jtl", followSymlinks: false
 //         cucumber '**/cucumber.json'
+
+    }
+    stage('Attach report to pre-defined JIRA'){
 
     }
 // 	stage('Create Issue to JIRA') {
