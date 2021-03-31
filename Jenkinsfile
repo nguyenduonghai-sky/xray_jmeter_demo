@@ -17,9 +17,7 @@ node() {
     stage('clean up') {
            echo "Jump to phase CleanUP"
            echo env.PATH
-           env.TEST_DATA = bat(returnStdout: true, script: 'cleanup.sh').trim()
            bat"""bash cleanup.sh"""
-           echo "=============:" + env.TEST_DATA
 
         }
     stage('JMeter Tests') {
