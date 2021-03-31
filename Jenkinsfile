@@ -45,7 +45,6 @@ node() {
 
               echo response.successful.toString()
               echo response.data.toString()
-            }
 
 // 		def description = "[BUILD_URL|${env.BUILD_URL}]"
 // 		def labels = '["regression","automated_regression"]'
