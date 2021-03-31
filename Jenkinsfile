@@ -46,8 +46,8 @@ node() {
         echo response.successful.toString()
         echo response.data.toString()
         def jiraKey = response.data["key"].toString()
-        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: '/reports/TransactionsPerSecond.png'
-        echo attachment.data.toString()
+        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: '/reports/TransactionsPerSecond.png', site: 'local_jira'
+        echo "=========Attachment: " + attachment.data.toString()
 		}
 
 }
