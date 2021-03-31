@@ -45,6 +45,8 @@ node() {
 
               echo response.successful.toString()
               echo response.data.toString()
+//         def attachment = jiraUploadAttachment idOrKey: 'TEST-1', file: ''/reports/TransactionsPerSecond.png'
+//             echo attachment.data.toString()
 
 // 		def description = "[BUILD_URL|${env.BUILD_URL}]"
 // 		def labels = '["regression","automated_regression"]'
