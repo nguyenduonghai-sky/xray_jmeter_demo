@@ -1,7 +1,7 @@
 {
     "fields": {
         "project": {
-            "key": "DEMO"
+            "id": "10100"
         },
         "summary": "Test Execution for junit Execution",
         "issuetype": {
