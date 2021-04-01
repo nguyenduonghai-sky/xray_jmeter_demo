@@ -54,9 +54,10 @@ node() {
 
     }
     stage('Attach report to pre-defined JIRA'){
-        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
-        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'local_jira'
-        echo "=========Attachment: " + attachment.data.toString()
+        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'local_jira'
+        echo "=========Attachment 1: " + attachment1.data.toString()
+        echo "=========Attachment 2: " + attachment2.data.toString()
     }
 	stage('Create Test execution in JIRA') {
         echo "Create Test execution in JIRA"
