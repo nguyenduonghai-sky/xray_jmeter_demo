@@ -1,0 +1,12 @@
+{
+    "fields": {
+        "description": "Automated Test",
+        "priority" : {
+            "id": "10"
+        },  
+        "labels": [
+            "Testing",
+            "Automation"
+        ]
+    }
+}

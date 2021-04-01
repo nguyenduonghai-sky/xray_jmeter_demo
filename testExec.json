@@ -1,0 +1,19 @@
+{
+    "fields": {
+        "project": {
+            "key": "DEMO"
+        },
+        "summary": "Test Execution for junit Execution",
+        "issuetype": {
+            "id": "10007"
+        },
+        "components" : [
+            {
+            "name":"Interface"
+            },
+            {
+            "name":"Core"
+            }
+        ]
+    }
+}
