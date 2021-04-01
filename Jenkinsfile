@@ -54,22 +54,45 @@ node() {
 
     }
     stage('Attach report to pre-defined JIRA'){
-
-    }
-// 	stage('Create Issue to JIRA') {
-//         echo "Create Issue to JIRA"
-//         def testIssue = [fields: [ project: [key: 'XRAY'],
-//                                          summary: 'New JIRA Created from Jenkins.',
-//                                          description: 'New JIRA Created from Jenkins.',
-//                                          issuetype: [id: '10002']]]
-//
-//         response = jiraNewIssue issue: testIssue, site: 'local_jira'
-//
-//         echo response.successful.toString()
-//         echo response.data.toString()
-//         def jiraKey = response.data["key"].toString()
         def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
+        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'local_jira'
         echo "=========Attachment: " + attachment.data.toString()
-// 		}
+    }
+	stage('Create Test execution in JIRA') {
+        echo "Create Test execution in JIRA"
+        def testIssue = [fields: [ project: [key: 'XRAY'],
+                                         summary: 'JMeter performance results',
+                                         description: 'Build URL:  ${BUILD_URL}.\n\nDetailed dashboard report at: ${JOB_URL}ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ${AGGREGATE_TABLE}\n',
+                                         issuetype: [id: '10007']]]
+
+        response = jiraNewIssue issue: testIssue, site: 'local_jira'
+
+        echo response.successful.toString()
+        echo response.data.toString()
+        def jiraExecutionKey = response.data["key"].toString()
+        echo "=========jiraExecutionKey: " + jiraExecutionKey.data.toString()
+
+// {
+//    "fields": {
+//       "project": {
+//          "key": "CALC"
+//       },
+//       "summary": "JMeter performance results",
+//       "description": "Build URL:  ${BUILD_URL}.\n\nDetailed dashboard report at: ${JOB_URL}ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ${AGGREGATE_TABLE}\n",
+//       "issuetype": {
+//          "name": "Test Execution"
+//       },
+//       "customfield_10033": "123",
+//       "customfield_11805" : [
+//             "staging"
+//       ],
+//       "customfield_11807": [
+//          "CALC-1200"
+//       ]
+//
+//    }
+// }
+
+		}
 
 }
