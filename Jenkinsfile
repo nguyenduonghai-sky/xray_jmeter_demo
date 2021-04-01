@@ -8,7 +8,7 @@ node() {
         cleanWs()
         if (env.jiraKey== '') { // and/or whatever condition you want
                 currentBuild.result = 'ABORTED'
-                error('jira_ticket_ID not set')
+                error('jiraKey not set')
         }
         env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
         env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
@@ -28,6 +28,16 @@ node() {
     stage('JMeter Tests') {
         echo "Jump to phase Jmeter Tests"
         bat"""bash perf_script.sh"""
+    }
+    stage('Convert Result') {
+        echo "Convert Result"
+        bat"""bash convert.sh 'jmeter.jpetstore'"""
+    }
+    stage('Store Aggerate report') {
+        echo "Store Aggerate report"
+//                 bat"""bash convert.sh 'jmeter.jpetstore'"""
+        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash process_aggregate.sh').trim().readLines().drop(1).join(" ")
+        echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
     }
     stage('Expose report') {
         echo "Jump to phase Expose report"
