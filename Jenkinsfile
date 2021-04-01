@@ -1,15 +1,15 @@
 node() {
 
     def repoURL = env.repoURL
-    def jira_ticket_ID= env.jira_ticket_ID
+    def jiraKey= env.jiraKey
 
 
     stage("Prepare Workspace") {
         cleanWs()
-        if (env.jira_ticket_ID== '') { // and/or whatever condition you want
+        if (env.jiraKey== '') { // and/or whatever condition you want
                 currentBuild.result = 'ABORTED'
                 error('jira_ticket_ID not set')
-            }
+        }
         env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
         env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
         echo "Workspace set to:"  + env.WORKSPACE_LOCAL
@@ -58,8 +58,8 @@ node() {
 //         echo response.successful.toString()
 //         echo response.data.toString()
 //         def jiraKey = response.data["key"].toString()
-//         def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
-//         echo "=========Attachment: " + attachment.data.toString()
+        def attachment = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
+        echo "=========Attachment: " + attachment.data.toString()
 // 		}
 
 }
