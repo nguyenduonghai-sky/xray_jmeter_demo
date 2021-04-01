@@ -60,7 +60,7 @@ node() {
     }
 	stage('Create Test execution in JIRA') {
         echo "Create Test execution in JIRA"
-        def testIssue = [fields: [ project: [key: 'XRAY'],
+        def testIssue = [fields: [ project: [key: 'DEMO'],
                                          summary: 'JMeter performance results',
                                          description: 'Build URL:  ${BUILD_URL}.\n\nDetailed dashboard report at: ${JOB_URL}ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ${AGGREGATE_TABLE}\n',
                                          issuetype: [id: '10007']]]
