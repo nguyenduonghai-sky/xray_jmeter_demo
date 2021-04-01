@@ -72,7 +72,7 @@ node() {
         echo response.data.toString()
         def jiraExecutionKey = response.data["key"].toString()
         echo "=========jiraExecutionKey: " + jiraExecutionKey.data.toString()
-        step([$class: 'XrayImportBuilder', endpointName: '/junit/multipart', importFilePath: 'alternative_junit.xml', importInParallel: 'false', importInfo: 'testExec.json', importToSameExecution: 'false', inputInfoSwitcher: 'filePath', inputTestInfoSwitcher: 'filePath', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testImportInfo: 'test.json'])
+        step([$class: 'XrayImportBuilder', endpointName: '/junit/multipart', importFilePath: 'alternative_junit.xml', importInParallel: 'false', importInfo: 'testExec.json', importToSameExecution: 'false', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testImportInfo: 'test.json'])
 
 // {
 //    "fields": {
