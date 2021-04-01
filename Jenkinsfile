@@ -1,10 +1,15 @@
 node() {
 
     def repoURL = env.repoURL
-    echo "check thu xem:" + repoURL
+    def jira_ticket_ID= env.jira_ticket_ID
+
 
     stage("Prepare Workspace") {
         cleanWs()
+        if (env.jira_ticket_ID== '') { // and/or whatever condition you want
+                currentBuild.result = 'ABORTED'
+                error('jira_ticket_ID not set')
+            }
         env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
         env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
         echo "Workspace set to:"  + env.WORKSPACE_LOCAL
