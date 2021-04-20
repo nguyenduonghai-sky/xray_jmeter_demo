@@ -1,9 +1,10 @@
 pipeline {
     agent any
-    tools {
-        maven '3.6.3'
-        jdk 'jdk8'
-    }
+    // cannot install
+//     tools {
+//         maven '3.6.3'
+//         jdk 'jdk8'
+//     }
     stages {
         stage ('Initialize') {
             steps {
