@@ -1,80 +1,44 @@
 node() {
 
-    def repoURL = env.repoURL
-    def jiraKey= env.jiraKey
+//     def repoURL = env.repoURL
+//     def branch = env.branch
 
 
-    stage("Prepare Workspace") {
-        cleanWs()
-        if (env.jiraKey== '') { // and/or whatever condition you want
-                currentBuild.result = 'ABORTED'
-                error('jiraKey not set')
+    properties([[$class: 'JiraProjectProperty'], parameters([string(defaultValue: 'TAG', description: 'add the tag you want to run. WITHOUT the @ sign!', name: 'tag'), choice(choices: ['chrome','chromeINK', 'edge', 'firefox'], description: 'please select a browser according to your TestSet', name: 'browser'), choice(choices: ['sit', 'uat'], description: '', name: 'testedEnv'), choice(choices: ['jenkins'], description: '', name: 'executingEnv'), choice(choices: ['desktop', 'android-ssh', 'ios-ssh'], description: '', name: 'platform'),choice(choices:['feature','wip_pascal','wip_luuviet','wip_bao','wip_nam','wip_ndkhoa','wip_gokul','wip_marco','wip_lehai','wip_guzal','wip_francesco','wip_ahmed','wip_massimo','wip_phuong','wip_danica','wip_hai'], description: 'please select the branch to checkout', name: 'branch')])])
+    def token
+    def stdout
+    def cmd
+    def TestSet
+    def notify
+    pipeline {
+        options { disableConcurrentBuilds() }
+    agent any
+        stages{
+            stage('Get TA from GitLab'){
+                steps{
+                    echo "checkout branch: ${branch}"
+                checkout([$class                           : 'GitSCM',
+                          branches                         : [[name: "${branch}"]],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions                       : [[$class: 'CleanCheckout']],
+                          userRemoteConfigs                : [[credentialsId: 'skyGITpk',
+                          url                               : 'https://github.com/1703/sky-newCRM-E2E-testautomation-ntt']]
+                ])
+                }
+            }
+            stage('Execute XRay Tests') {
+                steps {
+                        sh 'mvn -Dcucumber.filter.tags=@%tag% -Dbrowser=%browser% -DexecutingEnv=%executingEnv% -DtestedEnv=%testedEnv% -Dplatform=%platform%'
+                }
+            }
+            stage('create Cucumber Report') {
+                steps {
+                    cucumber buildStatus: "UNSTABLE",
+                            fileIncludePattern: "**/cucumber.json",
+                            jsonReportDirectory: 'target/cucumber-report'
+                }
+            }
         }
-        env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
-        env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
-        echo "Workspace set to:"  + env.WORKSPACE_LOCAL
-        echo "Build time:"  + env.BUILD_TIME
-        env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
     }
-    stage('Checkout Self') {
-        git branch: 'main', credentialsId: '', url: repoURL
-    }
-    stage('clean up') {
-           echo "Jump to phase CleanUP"
-           echo env.PATH
-           bat"""bash cleanup.sh"""
-
-        }
-    stage('JMeter Tests') {
-        echo "Jump to phase Jmeter Tests"
-        bat"""bash perf_script.sh"""
-    }
-    stage('Convert Result') {
-        echo "Convert Result"
-        bat"""bash convert.sh 'jmeter.jpetstore'"""
-    }
-    stage('Store Aggerate report') {
-        echo "Store Aggerate report"
-//                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash process_aggregate.sh')
-        echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
-    }
-    stage('Expose report') {
-        echo "Jump to phase Expose report"
-        dir('reports') {
-            archiveArtifacts artifacts: '**'
-        }
-        dir('dashboard') {
-            archiveArtifacts artifacts: '**'
-        }
-
-        archiveArtifacts artifacts: "synthesis_results.csv", followSymlinks: false
-        archiveArtifacts artifacts: "results.jtl", followSymlinks: false
-//         cucumber '**/cucumber.json'
-
-    }
-    stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'local_jira'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'local_jira'
-        echo "=========Attachment 1: " + attachment1.data.toString()
-        echo "=========Attachment 2: " + attachment2.data.toString()
-    }
-	stage('Create Test execution in JIRA') {
-        echo "Create Test execution in JIRA"
-        def testIssue = [fields: [ project: [key: 'DEMO'],
-                                         summary: 'JMeter performance results',
-                                         description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
-                                         issuetype: [id: '10007']]]
-
-        response = jiraNewIssue issue: testIssue, site: 'local_jira'
-
-        echo response.successful.toString()
-        echo response.data.toString()
-        def jiraExecutionKey = response.data["key"].toString()
-        echo "=========jiraExecutionKey: " + jiraExecutionKey.toString()
-        step([$class: 'XrayImportBuilder', endpointName: '/junit', importFilePath: 'junit.xml', importInParallel: 'false', importToSameExecution: 'false', projectKey: 'DEMO', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testExecKey: jiraExecutionKey])
-//         step([$class: 'XrayImportBuilder', endpointName: '/junit/multipart', importFilePath: 'alternative_junit.xml', importInParallel: 'false', importInfo: 'testExec.json', importToSameExecution: 'false', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testImportInfo: 'test.json'])
-
-		}
 
 }
