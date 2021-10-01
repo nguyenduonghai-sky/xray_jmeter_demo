@@ -36,7 +36,7 @@ node() {
     stage('Store Aggerate report') {
         echo "Store Aggerate report"
 //                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
+        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py --padding 0 reports/aggregate_results.csv')
         echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
     }
     stage('Expose report') {
@@ -63,7 +63,7 @@ node() {
         echo "Create Test execution in JIRA"
         def testIssue = [fields: [ project: [key: 'XRAY'],
                                          summary: 'JMeter performance results',
-                                         description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
+                                         description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '\n',
                                          issuetype: [id: '10007']]]
 
         response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai'
