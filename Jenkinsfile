@@ -54,8 +54,8 @@ node() {
 
     }
     stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'nguyenduonghai.atlassian.net'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'nguyenduonghai.atlassian.net'
+        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'nguyenduonghai'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'nguyenduonghai'
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
@@ -66,7 +66,7 @@ node() {
                                          description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
                                          issuetype: [id: '10007']]]
 
-        response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai.atlassian.net'
+        response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai'
 
         echo response.successful.toString()
         echo response.data.toString()
