@@ -68,12 +68,17 @@ def horiz_div(col_widths, horiz, vert, padding):
     """
     horizs = [horiz * w for w in col_widths]
     div = ''.join([padding * horiz, vert, padding * horiz])
+    # horizs.insert(0,"|")
+    # horizs.insert(len(horizs),"|")
     return div.join(horizs)
 
 
 def add_dividers(row, divider, padding):
     """Add dividers and padding to a row of cells and return a string."""
     div = ''.join([padding * ' ', divider, padding * ' '])
+    #return div.join(row)
+    # row.insert(0,"|")
+    # row.insert(len(row),"|")
     return div.join(row)
 
 
@@ -92,9 +97,12 @@ def md_table(table, *, padding=DEFAULT_PADDING, divider='|', header_div='-'):
 
     col_widths = [len(cell) for cell in header]
     horiz = horiz_div(col_widths, header_div, divider, padding)
+    horiz = "|" + horiz + "|"
 
     header = add_dividers(header, divider, padding)
-    body = [add_dividers(row, divider, padding) for row in body]
+    header = "|" + header + "|"
+
+    body = ["|" + add_dividers(row, divider, padding) + "|" for row in body]
 
     table = [header, horiz]
     table.extend(body)
