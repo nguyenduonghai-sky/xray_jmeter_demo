@@ -97,7 +97,7 @@ def md_table(table, *, padding=DEFAULT_PADDING, divider='|', header_div='-'):
 
     col_widths = [len(cell) for cell in header]
     horiz = horiz_div(col_widths, header_div, divider, padding)
-    horiz = divider + horiz + divider
+    horiz = divider+ divider + horiz + divider + divider
 
     header = add_dividers(header, divider, padding)
     header = divider + header + divider
