@@ -36,7 +36,7 @@ node() {
     stage('Store Aggerate report') {
         echo "Store Aggerate report"
 //                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash process_aggregate.sh')
+        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
         echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
     }
     stage('Expose report') {
