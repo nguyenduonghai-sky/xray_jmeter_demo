@@ -97,12 +97,12 @@ def md_table(table, *, padding=DEFAULT_PADDING, divider='|', header_div='-'):
 
     col_widths = [len(cell) for cell in header]
     horiz = horiz_div(col_widths, header_div, divider, padding)
-    horiz = "|" + horiz + "|"
+    horiz = divider + horiz + divider
 
     header = add_dividers(header, divider, padding)
-    header = "|" + header + "|"
+    header = divider + header + divider
 
-    body = ["|" + add_dividers(row, divider, padding) + "|" for row in body]
+    body = [divider + add_dividers(row, divider, padding) + divider for row in body]
 
     table = [header, horiz]
     table.extend(body)
