@@ -36,8 +36,7 @@ node() {
     stage('Store Aggerate report') {
         echo "Store Aggerate report"
 //                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        // env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash process_aggregate.sh')
-        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash convert_csv_to_md.sh')
+        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
         echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
     }
     stage('Expose report') {
@@ -60,11 +59,11 @@ node() {
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
-	stage('Create Test execution in JIRA') {
+    stage('Create Test execution in JIRA') {
         echo "Create Test execution in JIRA"
         def testIssue = [fields: [ project: [key: 'XRAY'],
                                          summary: 'JMeter performance results',
-                                         description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '\n',
+                                         description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
                                          issuetype: [id: '10007']]]
 
         response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai'
@@ -76,6 +75,6 @@ node() {
         // step([$class: 'XrayImportBuilder', endpointName: '/junit', importFilePath: 'junit.xml', importInParallel: 'false', importToSameExecution: 'false', projectKey: 'DEMO', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testExecKey: jiraExecutionKey])
 //         step([$class: 'XrayImportBuilder', endpointName: '/junit/multipart', importFilePath: 'alternative_junit.xml', importInParallel: 'false', importInfo: 'testExec.json', importToSameExecution: 'false', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testImportInfo: 'test.json'])
 
-		}
+        }
 
 }
