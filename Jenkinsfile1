@@ -1,0 +1,26 @@
+node() {
+
+    def repoURL = env.repoURL
+    def jiraKey= env.jiraKey
+
+
+    stage("Prepare Workspace") {
+        cleanWs()
+        if (env.jiraKey== '') { // and/or whatever condition you want
+                currentBuild.result = 'ABORTED'
+                error('jiraKey not set')
+        }
+        env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
+        env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
+        echo "Workspace set to:"  + env.WORKSPACE_LOCAL
+        echo "Build time:"  + env.BUILD_TIME
+        env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
+    }
+    stage('Create Test execution in JIRA') {
+        echo "JIRA XRAY"        
+        def data = JSONObject.fromObject([a:'{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'.toString()])
+        writeJSON(file: 'message1.json', json: data)
+
+        }
+}
+
