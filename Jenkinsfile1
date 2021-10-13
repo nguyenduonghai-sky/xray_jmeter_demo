@@ -34,7 +34,8 @@ node() {
 
         //bat"""curl -u nguyenduonghai@gmail.com:\"${token}\" -F result=@data.json http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution"""
         // bat"""curl -H "Content-Type: application/json" -X POST -u nguyenduonghai@gmail.com:Ascend@123 --data @data.json http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution"""
-        bat(script: "curl -H \"Content-Type: application/json\" -X POST --data @data.json  http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution", returnStdout: true)
+        def a = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data @data.json  http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution", returnStdout: true)
+        echo "${a}"
         }
 }
 
