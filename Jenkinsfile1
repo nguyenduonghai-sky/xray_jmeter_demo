@@ -24,7 +24,7 @@ node() {
         def xray_server = "https://nguyenduonghai.atlassian.net"
         def client_id = "1DD5300A7FC548669E6902B276CCDF7A"
         def client_secret = "a3b604a545b6aeb0fed838cdda43ba0a3941ba71be453108d275bfaf7626327e"
-        def token = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data '{ \"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\" }' ${xray_server}/api/v1/authenticate", returnStdout: true)
+        def token = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data '{ \"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\" }' ${xray_server}/api/3/authenticate", returnStdout: true)
         echo "Authentication token: ${token}"
 
         echo "JIRA XRAY"        
