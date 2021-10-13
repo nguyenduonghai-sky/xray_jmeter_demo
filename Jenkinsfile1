@@ -21,7 +21,7 @@ node() {
     stage('JIRA Xray') {
         echo "JIRA XRAY"        
         def data = '{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'
-        writeJSON file: 'data.json', json: amap
+        writeJSON file: 'data.json', json: data
 
         }
 }
