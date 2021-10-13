@@ -18,10 +18,10 @@ node() {
         echo "Build time:"  + env.BUILD_TIME
         env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
     }
-    stage('Create Test execution in JIRA') {
+    stage('JIRA Xray') {
         echo "JIRA XRAY"        
-        def data = JSONObject.fromObject([a:'{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'.toString()])
-        writeJSON(file: 'message1.json', json: data)
+        def data = "testKey":"XRAY-22","comment":"Successful execution","status":"PASS"
+        writeJSON file: 'data.json', json: amap
 
         }
 }
