@@ -20,18 +20,19 @@ node() {
     }
     stage('JIRA Xray') {
 
-        echo "Generating Xray token..."
+        //echo "Generating Xray token..."
         def xray_server = "https://nguyenduonghai.atlassian.net"
-        def client_id = "uaKkuQpKg9uTJKqj4iBk5cUr5Oa4qozv"
-        def client_secret = "LMfQ74EQWKvdVC0zuglyBq7MivxeHXa0YJr63Qkq9WbqFh9_AXxelLEHnaaBRqFO"
-        def token = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data '{ \"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\" }' ${xray_server}/rest/api/3/authenticate", returnStdout: true)
-        echo "Authentication token: ${token}"
+        //def client_id = "uaKkuQpKg9uTJKqj4iBk5cUr5Oa4qozv"
+        //def client_secret = "LMfQ74EQWKvdVC0zuglyBq7MivxeHXa0YJr63Qkq9WbqFh9_AXxelLEHnaaBRqFO"
+        //def token = bat(script: "curl -H \"Content-Type: application/json\" -X POST --data '{ \"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\" }' ${xray_server}/rest/api/3/authenticate", returnStdout: true)
+        //echo "Authentication token: ${token}"
+        def token = "dsXjsb2YIflOyS9O1J5A6504"
 
         echo "JIRA XRAY"        
         def data = '{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'
         writeJSON file: 'data.json', json: data
 
-        // bat"""curl -u nguyenduonghai@gmail.com:Ascend@123 -F info=@issueFields.json -F result=@results.json http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution/multipart"""
+        // bat"""curl -u nguyenduonghai@gmail.com:\"${token}\" -F info=@issueFields.json -F result=@data.json http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution/multipart"""
 
         }
 }
