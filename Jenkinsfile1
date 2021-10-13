@@ -29,7 +29,8 @@ node() {
         def token = "dsXjsb2YIflOyS9O1J5A6504"
 
         echo "JIRA XRAY"        
-        def data = '{/"testExecutionKey/":/"XRAY-23/",/"tests/":[{/"testKey/":/"XRAY-22/",/"comment/":/"Successful execution/",/"status/":/"PASS/"}]}'
+        //def data = '{/"testExecutionKey/":/"XRAY-23/",/"tests/":[{/"testKey/":/"XRAY-22/",/"comment/":/"Successful execution/",/"status/":/"PASS/"}]}'
+        def data = '{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'
         writeJSON file: 'data.json', json: data
 
         //bat"""curl -u nguyenduonghai@gmail.com:\"${token}\" -F result=@data.json http://nguyenduonghai.atlassian.net/rest/raven/1.0/import/execution"""
