@@ -33,6 +33,8 @@ node() {
 
         echo "Create JIRA Xray test Execution"
 
+        echo "token is **" + env.token
+
 
         def text = readFile "create_xray_test_execution.sh"
         text.replace("{{TOKEN}}", env.token )
