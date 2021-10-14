@@ -60,7 +60,9 @@ node() {
         
         def text = readFile "update_xray_test_execution.sh"
         text = text.replace("{{TOKEN}}", env.token )
+        text = text.replace("{{TEST_EXECUTION_KEY}}", env.TEST_EXECUTION_KEY)
         writeFile file: "update_xray_test_execution.sh", text: text
+        echo "text is:  " + text
 
         
         def text2 = readFile "update_xray_test_execution_data.json"
