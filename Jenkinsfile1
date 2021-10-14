@@ -24,7 +24,7 @@ node() {
         def xray_server = "https://xray.cloud.xpand-it.com"
         def client_id = "A5656CE1738B4C3E96B9F0ABD61119E9"
         def client_secret = "aff8b0004fd03d3ef54cf17f5da3c3e20e81b25ffb3599554b1fae865fa03623"
-        def token = bat(script: 'curl --location --request POST "https://xray.cloud.xpand-it.com/api/v1/authenticate" --header "Content-Type: application/json" --data-raw "{\"client_id\": \"${client_id}\",\"client_secret\": \"${client_secret}\"}"', returnStdout: true)
+        def token = bat(script: 'curl --location --request POST "https://xray.cloud.xpand-it.com/api/v1/authenticate" --header "Content-Type: application/json" --data-raw "{\"client_id\": ${client_id},\"client_secret\": \"${client_secret}\"}"', returnStdout: true)
         echo "Authentication token: ${token}"
 
         echo "JIRA XRAY"        
