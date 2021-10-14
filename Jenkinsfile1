@@ -42,7 +42,7 @@ node() {
 
     
     stage('Update JIRA Xray test Execution') {
-        echo "Create JIRA Xray test Execution"
+        echo "Update JIRA Xray test Execution"
         
         def text = readFile "update_xray_test_execution.sh"
         text = text.replace("{{TOKEN}}", env.token )
@@ -55,6 +55,7 @@ node() {
 
         def response_string = bat(script: "update_xray_test_execution.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
         //bat"""bash create_xray_test_execution.sh"""
+        echo "response_string is:  " + response_string
     }
     
 }
