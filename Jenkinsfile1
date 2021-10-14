@@ -20,9 +20,9 @@ node() {
 
 
         echo "=================================================================="
-        def String url = "http://localhost:8080/job/Demos/job/maven-pipeline-demo/job/sdkman/2/api/json"
+        def String url = "https://xray.cloud.xpand-it.com/api/v1/authenticate"
 
-        def String response = bat(script: "curl -s $url", returnStdout: true).trim()
+        def String response = bat(script: 'curl -X POST $url' , returnStdout: true).trim()
 
         echo response    
 
