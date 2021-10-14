@@ -1,1 +1,1 @@
-{"query":"mutation {\n    createTestExecution(\n        testIssueIds: []\n        jira: {\n            fields: {\n                summary: \"empty Test Execution\",\n                project: {key: \"XRAY\"} \n            }\n        }\n    ) {\n        testExecution {\n            issueId\n            jira(fields: [\"10008\"])\n        }\n        warnings\n    }\n}","variables":{}}
+{"query":"mutation {createTestExecution(testIssueIds:[]jira:{fields:{summary:"empty Test Execution",project:{key:"XRAY"}}}){testExecution{issueIdjira(fields:["10008"])}warnings}}","variables":{}}
