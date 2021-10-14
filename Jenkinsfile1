@@ -30,7 +30,7 @@ node() {
 
         echo "JIRA XRAY"        
 
-        def a = bat(script: "curl -H \"Content-Type: application/json\" -X POST -H \"Authorization: Bearer ${token}\"  --data @\"data.json\" https://xray.cloud.xpand-it.com/api/v1/import/execution", returnStdout: true)
+        def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true)
         echo "${a}"
         }
 }
