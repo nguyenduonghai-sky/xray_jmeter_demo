@@ -19,6 +19,9 @@ node() {
         env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
 
     }
+    stage('Checkout Self') {
+        git branch: 'main', credentialsId: '', url: repoURL
+    }
     stage('JIRA Xray') {
 
         //echo "Generating Xray token..."
