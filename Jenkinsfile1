@@ -27,15 +27,10 @@ node() {
         //echo "Generating Xray token..."
         // bat"""bash authentication.sh"""
         def token = bat(script: "bash authentication.sh", returnStdout: true).trim()
-        echo "Token is: ======================= " + token
-
 
         echo "JIRA XRAY"        
-        //def data = '{/"testExecutionKey/":/"XRAY-23/",/"tests/":[{/"testKey/":/"XRAY-22/",/"comment/":/"Successful execution/",/"status/":/"PASS/"}]}'
-        def data = '{"testExecutionKey":"XRAY-23","tests":[{"testKey":"XRAY-22","comment":"Successful execution","status":"PASS"}]}'
-        writeJSON file: 'data.json', json: data
 
-        def a = bat(script: "curl -H \"Content-Type: application/json\" -X POST -H \"Authorization: Bearer ${token}\"  --data @\"data.json\" ${xray_server}/api/v1/import/execution", returnStdout: true)
+        def a = bat(script: "curl -H \"Content-Type: application/json\" -X POST -H \"Authorization: Bearer ${token}\"  --data @\"data.json\" https://xray.cloud.xpand-it.com/api/v1/import/execution", returnStdout: true)
         echo "${a}"
         }
 }
