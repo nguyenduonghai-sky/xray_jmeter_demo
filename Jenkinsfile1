@@ -31,11 +31,15 @@ node() {
     }
     stage('Create JIRA Xray test Execution') {
 
-        // echo "Create JIRA Xray test Execution"
+        echo "Create JIRA Xray test Execution"
+
 
         def text = readFile "create_xray_test_execution.sh"
-        text.replace("{{TOKEN}}", env.token )
+        text.replace("{{TOKEN}}", ${env.token} )
         writeFile file: "create_xray_test_execution.sh", text: text
+
+
+        echo "text is **" + text
 
         bat"""bash create_xray_test_execution.sh"""
 
