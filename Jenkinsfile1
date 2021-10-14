@@ -48,8 +48,9 @@ node() {
         writeFile file: "get_test_execution_by_id.sh", text: text
         
         def response_string = bat(script: "bash get_test_execution_by_id.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "jsonObj is:  " + response_string
         def jsonObj = readJSON text: response_string
-        echo "jsonObj is:  " + env.jsonObj    
+
 
         env.TEST_EXECUTION_KEY = bat(script: "echo ${jsonObj.data.getTestExecution.jira.key}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
         echo "TEST_EXECUTION_KEY is:  " + env.TEST_EXECUTION_KEY
