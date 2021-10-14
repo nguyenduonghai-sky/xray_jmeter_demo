@@ -32,7 +32,7 @@ node() {
     stage('Create JIRA Xray test Execution') {
 
         // echo "Create JIRA Xray test Execution"
-        def a = bat(script: "bash create_xray_test_execution.sh ${env.token}", returnStdout: true).trim().readLines().drop(1).join(" ")
+        def a = bat(script: "bash create_xray_test_execution.sh ${env.token}", returnStdout: true)
         echo "${a}"
     }
     /*
