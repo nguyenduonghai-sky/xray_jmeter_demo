@@ -40,6 +40,19 @@ node() {
         echo "TEST_EXECUTION_ID is:  " + env.TEST_EXECUTION_ID
     }
 
+    stage('Get Test Execution Key by ID ') {
+        echo "Create JIRA Xray test Execution"
+        def text = readFile "get_test_execution_by_id.sh"
+        text = text.replace("{{TOKEN}}", env.token )
+        text = text.replace("{{TEST_EXECUTION_ID}}", env.TEST_EXECUTION_ID )
+        writeFile file: "create_xray_test_execution.sh", text: text
+        
+        def response_string = bat(script: "bash get_test_execution_by_id.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        def jsonObj = readJSON text: response_string
+        env.TEST_EXECUTION_KEY = bat(script: "echo ${jsonObj.data.getTestExecution.jira.key}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "TEST_EXECUTION_KEY is:  " + env.TEST_EXECUTION_KEY
+    }
+
     
     stage('Update JIRA Xray test Execution') {
         echo "Update JIRA Xray test Execution"
@@ -47,10 +60,11 @@ node() {
         def text = readFile "update_xray_test_execution.sh"
         text = text.replace("{{TOKEN}}", env.token )
         writeFile file: "update_xray_test_execution.sh", text: text
+
         
         def text2 = readFile "update_xray_test_execution_data.json"
         text2 = text2.replace("{{TEST}}", env.jiraKey )
-        text2= text2.replace("{{TEST_EXECUTION_ID}}",env.TEST_EXECUTION_ID )
+        text2= text2.replace("{{TEST_EXECUTION_KEY}}",env.TEST_EXECUTION_KEY )
         echo "text2 is:  " + text2
         writeFile file: "update_xray_test_execution_data.json", text: text2
 
@@ -59,5 +73,6 @@ node() {
         
         echo "response_string is:  " + response_string
     }
+    
     
 }
