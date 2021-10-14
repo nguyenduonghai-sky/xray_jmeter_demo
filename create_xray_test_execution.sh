@@ -1,5 +1,18 @@
-#!/bin/bash
-curl --location --request POST 'https://xray.cloud.xpand-it.com/api/v1/graphql' \
+curl --location --request POST 'https://xray.cloud.xpand-it.com/api/v1/import/execution' \
 --header 'Authorization: Bearer {{TOKEN}}' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"mutation {\n    createTestExecution(\n        testIssueIds: []\n        jira: {\n            fields: {\n                summary: \"Test Execution of {{TEST}}, build time {{BUILD_TIME}}\",\n                project: {key: \"XRAY\"} \n            }\n        }\n    ) {\n        testExecution {\n            issueId\n            jira(fields: [\"10008\"])\n        }\n        warnings\n    }\n}","variables":{}}'
+--data-raw '{
+    "info" : {
+        "summary" : "NFT Test Execution of of {{TEST}}, build time {{BUILD_TIME}}",
+        "description" : "This execution is automatically created when run in jenkin job"
+    },
+    "tests" : [
+        {
+            "testKey" : "{{TEST}}",
+            "start" : "2014-08-30T11:47:35+01:00",
+            "finish" : "2014-08-30T11:50:56+01:00",
+            "comment" : "Successful execution",
+            "status" : "PASS"
+        }
+ ]
+}'

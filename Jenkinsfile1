@@ -54,7 +54,7 @@ node() {
         echo "TEST_EXECUTION_KEY is:  " + env.TEST_EXECUTION_KEY
     }
 
-    
+    /*
     stage('Update JIRA Xray test Execution') {
         echo "Update JIRA Xray test Execution"
         
@@ -76,6 +76,6 @@ node() {
         
         echo "response_string is:  " + response_string
     }
-    
+    */
     
 }
