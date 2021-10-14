@@ -27,6 +27,19 @@ node() {
         env.token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
         echo "token is :"  + env.token    
     }
+    stage('Get Test case ID by issue key') {
+        echo "Get Test case ID by issue key"
+        
+        def text = readFile "get_test_case_id_by_issue_key.sh"
+        text = text.replace("{{TOKEN}}", env.token )
+        text = text.replace("{{TEST_KEY}}", env.jiraKey )
+        writeFile file: "create_xray_test_execution.sh", text: text
+        def response_string = bat(script: "bash create_xray_test_execution.sh", returnStdout: true).trim().readLines().drop(1).join(" ")
+        def jsonObj = readJSON text: response_string
+
+        env.TEST_ID = bat(script: "echo ${jsonObj.data.getTests.results[0].issueId}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "TEST_ID is:  " + env.TEST_ID 
+    }
     stage('Create JIRA Xray test Execution') {
         echo "Create JIRA Xray test Execution"
         def text = readFile "create_xray_test_execution.sh"
@@ -35,12 +48,12 @@ node() {
         text = text.replace("{{BUILD_TIME}}",env.BUILD_TIME )
         writeFile file: "create_xray_test_execution.sh", text: text
         def response_string = bat(script: "bash create_xray_test_execution.sh", returnStdout: true).trim().readLines().drop(1).join(" ")
-        echo "response_string is:  " + response_string
         def jsonObj = readJSON text: response_string
         
         env.TEST_EXECUTION_KEY = bat(script: "echo ${jsonObj.key}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
-        
         echo "TEST_EXECUTION_KEY is:  " + env.TEST_EXECUTION_KEY
+        env.TEST_EXECUTION_ID = bat(script: "echo ${jsonObj.id}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "TEST_EXECUTION_ID is:  " + env.TEST_EXECUTION_ID
     }
 
     /*
