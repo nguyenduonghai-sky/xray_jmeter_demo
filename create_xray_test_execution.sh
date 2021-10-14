@@ -1,2 +1,2 @@
 #!/bin/bash
-curl --location --request POST 'https://xray.cloud.xpand-it.com/api/v1/graphql' --header 'Authorization: Bearer $1' --header 'Content-Type: application/json' --data-raw '{"query":"mutation {createTestExecution(testIssueIds:[]jira:{fields:{summary:"empty Test Execution",project:{key:"XRAY"}}}){testExecution{issueIdjira(fields:["10008"])}warnings}}","variables":{}}'
+curl --location --request POST 'https://xray.cloud.xpand-it.com/api/v1/graphql' --header 'Authorization: Bearer $1' --data-raw '{"query":"mutation {createTestExecution(testIssueIds:[]jira:{fields:{summary:"empty Test Execution",project:{key:"XRAY"}}}){testExecution{issueIdjira(fields:["10008"])}warnings}}","variables":{}}'
