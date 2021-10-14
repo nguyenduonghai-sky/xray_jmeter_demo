@@ -24,13 +24,12 @@ node() {
     }
     stage('JIRA Xray') {
 
-        //echo "Generating Xray token..."
+        // echo "Generating Xray token..."
         // bat"""bash authentication.sh"""
-        def token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','')
+        def env.token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "token is :"  + env.token    
 
-        echo "JIRA XRAY"        
-
-        def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true)
+        def a = bat(script: "bash update_xray.sh ${env.token}", returnStdout: true).trim().readLines().drop(1).join(" ")
         echo "${a}"
         }
 }
