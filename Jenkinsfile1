@@ -25,7 +25,9 @@ node() {
     stage('JIRA Xray') {
 
         //echo "Generating Xray token..."
-        bat"""bash authentication.sh"""
+        // bat"""bash authentication.sh"""
+        def token = bat(script: "bash authentication.sh", returnStdout: true)
+        echo "Token is: ======================= " + token
 
 
         echo "JIRA XRAY"        
