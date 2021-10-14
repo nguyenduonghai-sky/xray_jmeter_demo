@@ -26,10 +26,10 @@ node() {
 
         // echo "Generating Xray token..."
         // bat"""bash authentication.sh"""
-        def env.token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
-        echo "token is :"  + env.token    
+        def token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "token is :"  + token    
 
-        def a = bat(script: "bash update_xray.sh ${env.token}", returnStdout: true).trim().readLines().drop(1).join(" ")
+        def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true).trim().readLines().drop(1).join(" ")
         echo "${a}"
         }
 }
