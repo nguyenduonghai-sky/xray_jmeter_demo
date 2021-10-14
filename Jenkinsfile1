@@ -79,7 +79,7 @@ node() {
         def test_run_status = "PASSED"
         def ac =  readFile "reports/result4.csv"
         echo "ac is:  " + ac
-        if (ac.contain("False") == True)
+        if (ac.contains("False"))
         {
             test_run_status = "FAILED"
         }
