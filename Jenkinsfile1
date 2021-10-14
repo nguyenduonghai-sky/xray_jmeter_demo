@@ -50,7 +50,7 @@ node() {
         
         def text2 = readFile "update_xray_test_execution_data.json"
         text2 = text2.replace("{{TEST}}", env.jiraKey )
-        text 2= text2.replace("{{TEST_EXECUTION_ID}}",env.TEST_EXECUTION_ID )
+        text2= text2.replace("{{TEST_EXECUTION_ID}}",env.TEST_EXECUTION_ID )
         writeFile file: "update_xray_test_execution_data.json", text: text2
 
         def response_string = bat(script: "update_xray_test_execution.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
