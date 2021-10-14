@@ -57,7 +57,7 @@ node() {
     }
 
     stage('Get test run ID') {
-        echo "Create JIRA Xray test Execution"
+        echo "Get test run ID"
         def text = readFile "get_test_run_by_test_case_id_and_test_exec_id.sh"
         text = text.replace("{{TOKEN}}", env.token )
         text = text.replace("{{TEST_CASE_ID}}", env.TEST_ID )
@@ -70,7 +70,23 @@ node() {
         def jsonObj = readJSON text: response_string
         
         env.TEST_RUN_ID = bat(script: "echo ${jsonObj.data.getTestRun.id}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
-        echo "TEST_EXECUTION_KEY is:  " + env.TEST_EXECUTION_KEY
+        echo "TEST_RUN_ID is:  " + env.TEST_RUN_ID
+
+    }
+    stage('Update test run ID') {
+        echo "update_test_run_by_id"
+        def text = readFile "update_test_run_by_id.sh"
+        text = text.replace("{{TOKEN}}", env.token )
+        text = text.replace("{{TEST_RUN_ID}}", env.TEST_RUN_ID )
+        text = text.replace("{{TEST_RUN_STATUS}}", "FAILED" ) // for the sake of the demo
+        writeFile file: "update_test_run_by_id.sh", text: text
+        
+        def response_string = bat(script: "bash update_test_run_by_id.sh", returnStdout: true).trim().readLines().drop(1).join(" ")
+        echo "response_string is:  " + response_string
+        def jsonObj = readJSON text: response_string
+        
+        env.updateTestRunStatus = bat(script: "echo ${jsonObj.data.updateTestRunStatus}", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "updateTestRunStatus is:  " + env.updateTestRunStatus
 
     }
     
