@@ -1,0 +1,6 @@
+label,criteria,condition,value
+/purchase/v1/session,# Samples,>,50
+/purchase/v1/session,95% Line,<,600
+/purchase/v1/session,99% Line,>,600
+/purchase/v1/basket-Entertainment,95% Line,<,10000
+TOTAL,Error %,<,20
