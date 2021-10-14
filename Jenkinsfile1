@@ -37,7 +37,6 @@ node() {
         text.replace("{{TOKEN}}", env.token )
         writeFile file: "create_xray_test_execution.sh", text: text
         def a = bat(script: "bash create_xray_test_execution.sh", returnStdout: true)
-        def a = bat(script: "bash create_xray_test_execution.sh ${env.token}", returnStdout: true)
         echo "${a}"
     }
 }
