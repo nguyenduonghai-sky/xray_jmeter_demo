@@ -41,11 +41,11 @@ node() {
     }
 
     stage('Get Test Execution Key by ID ') {
-        echo "Create JIRA Xray test Execution"
+        echo "Get Test Execution Key by ID"
         def text = readFile "get_test_execution_by_id.sh"
         text = text.replace("{{TOKEN}}", env.token )
         text = text.replace("{{TEST_EXECUTION_ID}}", env.TEST_EXECUTION_ID )
-        writeFile file: "create_xray_test_execution.sh", text: text
+        writeFile file: "get_test_execution_by_id.sh", text: text
         
         def response_string = bat(script: "bash get_test_execution_by_id.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
         def jsonObj = readJSON text: response_string
