@@ -1,6 +1,3 @@
 label,criteria,condition,value,result_value,result
-/purchase/v1/session,# Samples,>,50,49,False
-/purchase/v1/session,95% Line,<,600,1407,False
 /purchase/v1/session,99% Line,>,600,1510,True
-/purchase/v1/basket-Entertainment,95% Line,<,10000,10526,False
-TOTAL,Error %,<,20,48.98,False
+
