@@ -38,10 +38,10 @@ node() {
 
         def text = readFile "create_xray_test_execution.sh"
         text = text.replace("{{TOKEN}}", env.token )
+        text = text.replace("{{TEST}}", env.jiraKey )
+        text = text.replace("{{BUILD_TIME}}",env.BUILD_TIME )
         writeFile file: "create_xray_test_execution.sh", text: text
 
-
-        echo "text is **" + text
 
         bat"""bash create_xray_test_execution.sh"""
 
