@@ -3,7 +3,7 @@ import groovy.json.JsonSlurperClassic
 node() {
 
     def repoURL = env.repoURL
-    def jiraKey= env.jiraKey
+    def jiraKey= env.jiraKey  // Test case you want to run test
 
 
     stage("Prepare Workspace") {
@@ -22,7 +22,21 @@ node() {
     stage('Checkout Self') {
         git branch: 'main', credentialsId: '', url: repoURL
     }
-    stage('JIRA Xray') {
+    stage('JIRA Xray authentication') {
+
+        echo "JIRA Xray authentication"
+        def token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "token is :"  + token    
+
+    }
+    stage('Create JIRA Xray test Execution') {
+
+        // echo "Create JIRA Xray test Execution"
+        def a = bat(script: "bash create_xray_test_execution.sh ${token}", returnStdout: true).trim().readLines().drop(1).join(" ")
+        echo "${a}"
+    }
+    /*
+    stage('Update Test Execution') {
 
         // echo "Generating Xray token..."
         // bat"""bash authentication.sh"""
@@ -31,6 +45,17 @@ node() {
 
         def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true).trim().readLines().drop(1).join(" ")
         echo "${a}"
-        }
+    }
+    stage('Update associate Test Case with correct status') {
+
+        // echo "Generating Xray token..."
+        // bat"""bash authentication.sh"""
+        def token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
+        echo "token is :"  + token    
+
+        def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true).trim().readLines().drop(1).join(" ")
+        echo "${a}"
+    }
+    */
 }
 
