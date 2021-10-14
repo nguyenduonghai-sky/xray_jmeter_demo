@@ -43,7 +43,7 @@ node() {
         def token = bat(script: "bash authentication.sh", returnStdout: true).trim().replace('"','').readLines().drop(1).join(" ")
         echo "token is :"  + token    
 
-        def a = bat(script: "bash update_xray.sh ${token}", returnStdout: true).trim().readLines().drop(1).join(" ")
+        def a = bat(script: "bash update_xray.sh '${token}'", returnStdout: true).trim().readLines().drop(1).join(" ")
         echo "${a}"
     }
     stage('Update associate Test Case with correct status') {
