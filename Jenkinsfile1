@@ -88,7 +88,7 @@ node() {
         def text = readFile "update_test_run_by_id.sh"
         text = text.replace("{{TOKEN}}", env.token )
         text = text.replace("{{TEST_RUN_ID}}", env.TEST_RUN_ID )
-        text = text.replace("{{TEST_RUN_STATUS}}", "FAILED" ) // for the sake of the demo
+        text = text.replace("{{TEST_RUN_STATUS}}", test_run_status ) // for the sake of the demo
         writeFile file: "update_test_run_by_id.sh", text: text
         
         def response_string = bat(script: "bash update_test_run_by_id.sh", returnStdout: true).trim().readLines().drop(1).join(" ")
