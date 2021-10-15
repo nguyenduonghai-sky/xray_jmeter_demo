@@ -77,7 +77,7 @@ node() {
         echo "update_test_run_by_id"
 
         def test_run_status = "PASSED"
-        def ac =  readFile "reports/result4.csv"
+        def ac =  readFile "reports/result4_1.csv"
         echo "ac is:  " + ac
         if (ac.contains("False"))
         {
