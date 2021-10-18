@@ -85,6 +85,7 @@ node() {
         // }
 
         def test_run_status = bat(script: "bash get_status_evaluation_criteria.sh reports/result4_1.csv", returnStdout: true).trim().readLines().drop(1).join(" ")
+        echo "test_run_status is:  " + test_run_status
 
 
         def text = readFile "update_test_run_by_id.sh"
