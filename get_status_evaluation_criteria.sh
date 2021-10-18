@@ -1,10 +1,8 @@
 #!/bin/bash
-def ac =  readFile "$filePath"
+ac =  readFile "$filePath"
 echo "ac is:  " + ac
-if (ac.contains("False"))
-{
-    print "PASSED"
-}
-else {
-    print "FAILED"
-}
+if [[ $ac == *"False"* ]]; then
+    echo "FAILED"
+else
+    echo "PASSED"
+fi
