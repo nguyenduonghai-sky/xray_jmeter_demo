@@ -1,5 +1,5 @@
 #!/bin/bash
-ac =  readFile "$filePath"
+ac="cat $filePath"
 echo "ac is:  " + $ac
 if [[ $ac == *"False"* ]]; then
     echo "FAILED"
