@@ -1,7 +1,9 @@
 #!/bin/bash
-ac="cat $filePath"
-echo "ac is:  " + $ac
-if [[ $ac == *"False"* ]]; then
+filePath=$1
+ac=`cat $1`
+echo "ac is:  $ac"
+if [[ $ac == *"False"* ]] 
+then
     echo "FAILED"
 else
     echo "PASSED"
