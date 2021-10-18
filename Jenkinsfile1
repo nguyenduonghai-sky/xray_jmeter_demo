@@ -76,13 +76,15 @@ node() {
     stage('Update test run ID') {
         echo "update_test_run_by_id"
 
-        def test_run_status = "PASSED"
-        def ac =  readFile "reports/result4_1.csv"
-        echo "ac is:  " + ac
-        if (ac.contains("False"))
-        {
-            test_run_status = "FAILED"
-        }
+        // def test_run_status = "PASSED"
+        // def ac =  readFile "reports/result4_1.csv"
+        // echo "ac is:  " + ac
+        // if (ac.contains("False"))
+        // {
+        //     test_run_status = "FAILED"
+        // }
+
+        def test_run_status = bat(script: "bash get_status_evaluation_criteria.sh -filePath reports/result4_1.csv", returnStdout: true).trim().readLines().drop(1).join(" ")
 
 
         def text = readFile "update_test_run_by_id.sh"
