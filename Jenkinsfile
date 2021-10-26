@@ -36,7 +36,7 @@ node() {
     stage('Store Aggerate report') {
         echo "Store Aggerate report"
 //                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
+        //env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
         // env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python --version')
         // env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash convert_csv_to_md.sh')
         echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
@@ -57,7 +57,7 @@ node() {
     }
     stage('Attach report to pre-defined JIRA'){
         def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'nguyenduonghai'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: 'alternate_junit.xml', site: 'nguyenduonghai'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'nguyenduonghai'
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
