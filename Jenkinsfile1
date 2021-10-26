@@ -20,7 +20,7 @@ node() {
 
     }
     stage('Checkout Self') {
-        git branch: 'main', credentialsId: '', url: repoURL
+        git branch: 'main', credentialsId: '025a7bb1-f69b-4d01-9a55-7d106e4045e2', url: repoURL
     }
     stage('JIRA Xray authentication') {
         echo "JIRA Xray authentication"
