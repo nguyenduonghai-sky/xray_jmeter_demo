@@ -12,7 +12,7 @@ node() {
                 error('jiraKey not set')
         }
         env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
-        env.BUILD_TIME = sh(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
+        env.BUILD_TIME = sh(returnStdout: true, script: 'date ').trim().readLines().drop(1).join(" ")
         echo "Workspace set to:"  + env.WORKSPACE_LOCAL
         echo "Build time:"  + env.BUILD_TIME
         env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
