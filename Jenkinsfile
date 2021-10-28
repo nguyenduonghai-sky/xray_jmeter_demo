@@ -11,8 +11,8 @@ node() {
                 currentBuild.result = 'ABORTED'
                 error('jiraKey not set')
         }
-        env.WORKSPACE_LOCAL = bat(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
-        env.BUILD_TIME = bat(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
+        env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'cd').trim().readLines().drop(1).join(" ")
+        env.BUILD_TIME = sh(returnStdout: true, script: 'date /t').trim().readLines().drop(1).join(" ")
         echo "Workspace set to:"  + env.WORKSPACE_LOCAL
         echo "Build time:"  + env.BUILD_TIME
         env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
@@ -23,23 +23,23 @@ node() {
     stage('clean up') {
            echo "Jump to phase CleanUP"
            echo env.PATH
-           bat"""bash cleanup.sh"""
+           sh"""bash cleanup.sh"""
 
         }
     stage('JMeter Tests') {
         echo "Jump to phase Jmeter Tests"
-        bat"""bash perf_script.sh"""
+        sh"""bash perf_script.sh"""
     }
     stage('Convert Result') {
         echo "Convert Result"
-        bat"""bash convert.sh 'jmeter.jpetstore'"""
+        sh"""bash convert.sh 'jmeter.jpetstore'"""
     }
     stage('Store Aggerate report') {
         echo "Store Aggerate report"
-//                 bat"""bash convert.sh 'jmeter.jpetstore'"""
-        //env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
-        // env.AGGERATE_TABLE = bat(returnStdout: true, script: 'python --version')
-        // env.AGGERATE_TABLE = bat(returnStdout: true, script: 'bash convert_csv_to_md.sh')
+//                 sh"""bash convert.sh 'jmeter.jpetstore'"""
+        //env.AGGERATE_TABLE = sh(returnStdout: true, script: 'python csvtomd.py reports/aggregate_results.csv')
+        // env.AGGERATE_TABLE = sh(returnStdout: true, script: 'python --version')
+        // env.AGGERATE_TABLE = sh(returnStdout: true, script: 'bash convert_csv_to_md.sh')
         echo "AGGERATE_TABLE result is " + env.AGGERATE_TABLE
     }
     stage('Expose report') {
