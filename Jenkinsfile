@@ -2,6 +2,7 @@ node() {
 
     def repoURL = env.repoURL
     def jiraKey= env.jiraKey
+	def branch=env.branch
 
 
     stage("Prepare Workspace") {
@@ -17,7 +18,7 @@ node() {
         env.PATH = "C:/Program Files/Git/usr/bin;D:/Working/Tools/apache-jmeter-5.4.1/bin;${env.PATH}"
     }
     stage('Checkout Self') {
-        git branch: 'main', credentialsId: '', url: repoURL
+        git branch: branch, credentialsId: '', url: repoURL
     }
     stage('clean up') {
            echo "Jump to phase CleanUP"
@@ -56,8 +57,8 @@ node() {
 
     }
     stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'nguyenduonghai'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'nguyenduonghai'
+        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'Jira_Cloud'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'Jira_Cloud'
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
@@ -66,9 +67,9 @@ node() {
         def testIssue = [fields: [ project: [key: 'XRAY'],
                                          summary: 'JMeter performance results',
                                          description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
-                                         issuetype: [id: '10007']]]
+                                         issuetype: [id: '10012']]]
 
-        response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai'
+        response = jiraNewIssue issue: testIssue, site: 'Jira_Cloud'
 
         echo response.successful.toString()
         echo response.data.toString()
