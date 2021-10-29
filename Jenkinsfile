@@ -56,8 +56,8 @@ node() {
 
     }
     stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'nguyenduonghai'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'nguyenduonghai'
+        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'Cloud_jira'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'Cloud_jira'
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
@@ -66,9 +66,9 @@ node() {
         def testIssue = [fields: [ project: [key: 'XRAY'],
                                          summary: 'JMeter performance results',
                                          description: 'Build URL:  ' + env.BUILD_URL+ '.\n\nDetailed dashboard report at: ' + env.JOB_URL + 'ws/dashboard/index.html\n\n*Aggregate results summary*\n\n ' + env.AGGERATE_TABLE + '}\n',
-                                         issuetype: [id: '10007']]]
+                                         issuetype: [id: '10012']]]
 
-        response = jiraNewIssue issue: testIssue, site: 'nguyenduonghai'
+        response = jiraNewIssue issue: testIssue, site: 'Cloud_jira'
 
         echo response.successful.toString()
         echo response.data.toString()
