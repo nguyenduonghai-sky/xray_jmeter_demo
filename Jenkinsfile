@@ -55,12 +55,6 @@ node() {
 //         cucumber '**/cucumber.json'
 
     }
-    stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/TransactionsPerSecond.png', site: 'Cloud_jira'
-        def attachment2 = jiraUploadAttachment idOrKey: jiraKey, file: './reports/aggregate_results.csv', site: 'Cloud_jira'
-        echo "=========Attachment 1: " + attachment1.data.toString()
-        echo "=========Attachment 2: " + attachment2.data.toString()
-    }
     stage('Create Test execution in JIRA') {
         echo "Create Test execution in JIRA"
         def testIssue = [fields: [ project: [key: 'DPX'],
@@ -74,9 +68,17 @@ node() {
         echo response.data.toString()
         def jiraExecutionKey = response.data["key"].toString()
         echo "=========jiraExecutionKey: " + jiraExecutionKey.toString()
+		env.jiraExecutionKey =  jiraExecutionKey
         // step([$class: 'XrayImportBuilder', endpointName: '/junit', importFilePath: 'junit.xml', importInParallel: 'false', importToSameExecution: 'false', projectKey: 'DPX', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testExecKey: jiraExecutionKey])
 //         step([$class: 'XrayImportBuilder', endpointName: '/junit/multipart', importFilePath: 'alternative_junit.xml', importInParallel: 'false', importInfo: 'testExec.json', importToSameExecution: 'false', serverInstance: 'SERVER-e8a41998-c809-4234-8fa1-1951c4a589c6', testImportInfo: 'test.json'])
 
         }
+		
+    stage('Attach report to pre-defined JIRA'){
+        def attachment1 = jiraUploadAttachment idOrKey: env.jiraExecutionKey, file: './reports/TransactionsPerSecond.png', site: 'Cloud_jira'
+        def attachment2 = jiraUploadAttachment idOrKey: env.jiraExecutionKey, file: './reports/aggregate_results.csv', site: 'Cloud_jira'
+        echo "=========Attachment 1: " + attachment1.data.toString()
+        echo "=========Attachment 2: " + attachment2.data.toString()
+    }
 
 }
