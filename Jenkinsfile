@@ -75,8 +75,10 @@ node() {
         }
 		
     stage('Attach report to pre-defined JIRA'){
-        def attachment1 = jiraUploadAttachment idOrKey: env.jiraExecutionKey, file: './reports/TransactionsPerSecond.png', site: 'Cloud_jira'
-        def attachment2 = jiraUploadAttachment idOrKey: env.jiraExecutionKey, file: './reports/aggregate_results.csv', site: 'Cloud_jira'
+		def jiraExecutionKey1 = env.jiraExecutionKey
+		echo "=========jiraExecutionKey1: " + jiraExecutionKey1.toString()
+        //def attachment1 = jiraUploadAttachment idOrKey: env.jiraExecutionKey, file: './reports/TransactionsPerSecond.png', site: 'Cloud_jira'
+        def attachment2 = jiraUploadAttachment idOrKey: jiraExecutionKey1, file: './reports/aggregate_results.csv', site: 'Cloud_jira'
         echo "=========Attachment 1: " + attachment1.data.toString()
         echo "=========Attachment 2: " + attachment2.data.toString()
     }
